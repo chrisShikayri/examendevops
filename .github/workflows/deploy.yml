@@ -71,7 +71,7 @@ jobs:
           password: ${{secrets.VPS_PASSWORD}}
           port: ${{secrets.VPS_SSH_PORT}}
           source: "stack.yml"
-          target: "/home/${{secrets.VPS_USER}}/despliegue"
+          target: "/home/${{secrets.VPS_USER}}/tacos"
 
       - name: despliege de servisios
         uses: appleboy/ssh-action@v1
@@ -82,18 +82,18 @@ jobs:
           port: ${{secrets.VPS_SSH_PORT}}
           script: |
             echo "servicios desplegados"
-            cd ~/despliegue
+            cd ~/tacos
 
             #Paso 1 de
             #echo "==> Descargando la imagen del github"
-            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u chrisshikayri --password-stdin
-            docker pull ghcr.io/chrisshikayri/chururu:latest
+            #echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u chrisshikayri --password-stdin
+            #docker pull ghcr.io/chrisshikayri/chururu:latest
             
             #Paso 2 de
-            docker stack rm chris || true
+            #docker stack rm chris || true
 
-            sleep 30
+            #sleep 30
 
             #Paso 3 de
-            echo "==> Desplegando stack.."
-            docker stack deploy -c stack.yml --with-registry-auth chris
+            #echo "==> Desplegando stack.."
+            #docker stack deploy -c stack.yml --with-registry-auth chris

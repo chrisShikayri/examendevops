@@ -14,6 +14,7 @@ COPY . .
 # Entrenar el modelo en build (o usar modelo ya existente)
 RUN python model/train.py
 
+
 ENV MODEL_PATH=/app/model/model.pkl
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
