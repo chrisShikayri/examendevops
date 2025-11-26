@@ -1,4 +1,4 @@
-name: CI - Test & Docker Build
+name: examendevops - Deploy to VPS
 
 on:
   push:
