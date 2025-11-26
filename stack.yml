@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  indy:
+    image: 
+    build: .
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.indy.entrypoints=http"
+        - "traefik.http.routers.indy.rule=Host(`indy.byronrm.com`)"
+        - "traefik.http.middlewares.indy-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.indy.middlewares=indy-https-redirect"
+        - "traefik.http.routers.indy-secure.entrypoints=https"
+        - "traefik.http.routers.indy-secure.rule=Host(`indy.byronrm.com`)"
+        - "traefik.http.routers.indy-secure.tls=true"
+        - "traefik.http.routers.indy-secure.tls.certresolver=http"
+        - "traefik.http.routers.indy-secure.service=indy"
+        - "traefik.http.services.indy.loadbalancer.server.port=80"
+        - "traefik.docker.network=traefik-public"
+    networks:
+      - traefik-public
+
+networks:
+  traefik-public:
+    external: true
