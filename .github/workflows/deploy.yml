@@ -40,7 +40,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/chrisShikayri/bautista:1.0.5
+          tags: ghcr.io/chrisshikayri/bautista:1.0.5
 
       - name: ver las variables de seguridad
         run: |
